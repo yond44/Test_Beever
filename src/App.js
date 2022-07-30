@@ -5,23 +5,47 @@ import { getKanyeQuotes } from "./actions/quotesAction.";
 import Image from "./component/Image";
 
 function App() {
-  const [refresh, setRefresh] = useState(false)
-  const [myQuotes, setMyQuotes] = useState('')
+  const [refresh, setRefresh] = useState(false);
+  const [myQuotes, setMyQuotes] = useState("");
   const dispatch = useDispatch();
+  const [favoriteQoute, setfavoriteQuote] = useState([])
   const reduxState = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(getKanyeQuotes());
-  }, []);
-
-  let favoriteQoute = ''
+  }, [refresh]);
 
   const quotes = async (e) => {
     e.preventDefault();
 
-     dispatch(getKanyeQuotes());
-  }
-  console.log(favoriteQoute);
+    setRefresh(!refresh)
+  };
+
+  
+  const favQuotes = async (e) => {
+    e.preventDefault();
+    
+        // const duplicate = [...favoriteQoute];
+        // duplicate.push(reduxState.QuotesReducer.kanyeQuotes);
+        // setFavoriteQuote(duplicate);
+      
+    // for(let i = 0; i < favoriteQoute.length; i++) {
+    //   if(favoriteQoute[i] == reduxState.QuoteReducer.kanyeQuotes) {
+        favoriteQoute.push(reduxState.QuoteReducer.kanyeQuotes);
+        setRefresh(!refresh)
+    //     console.log(favoriteQoute[i]);
+    //   } else {
+    //     console.log("duplicate");
+    //   }
+    // /}
+
+//     const duplicate = [...favoriteQoute];
+// duplicate.push(reduxState.QuotesReducer?.kanyeQuotes)
+// setfavoriteQuote(duplicate);
+    console.log(favoriteQoute);
+    
+  };
+
   return (
     <div>
       <div
@@ -43,16 +67,12 @@ function App() {
         </h3>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <button onClick={quotes}>Get Quote</button>
-          <button
-            onClick={() =>
-              favoriteQoute != reduxState.QuoteReducer.kanyeQuotes &&
-              favoriteQoute.push(reduxState.QuoteReducer.kanyeQuotes)
-            }
-          >
-            Add Favorite
-          </button>
+          <button onClick={favQuotes}>Add Favorite</button>
         </div>
       </form>
+      {favoriteQoute?.map((quotes) => (
+        <p style={{ textAlign: 'center' }}>{quotes} </p>
+      ))}
 
       <div style={{ textAlign: "center" }}>
         <hr style={{ maxWidth: "30%", marginTop: 90 }}></hr>
