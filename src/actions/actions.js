@@ -1,0 +1,2 @@
+export const GET_KANYE_QUOTES = "GET_KANYE_QUOTES";
+export const GET_MY_QUOTES = "GET_MY_QUOTES";
