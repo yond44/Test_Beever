@@ -50,13 +50,11 @@ function App() {
         </div>
       </form>
 
-      <div>
-        <hr style={{ maxWidth: '30%', marginTop: 90}}></hr>
-        <form style={{display : 'flex'}}>
-        <label>
-          <h2></h2>
-        </label>
-          <input type='text'></input>
+      <div style={{ textAlign: "center" }}>
+        <hr style={{ maxWidth: "30%", marginTop: 90 }}></hr>
+        <h2>My Quotes</h2>
+        <form style={{ display: "flex", justifyContent: 'center' }}>
+          <input type="text"></input>
           <button>Submit</button>
         </form>
       </div>
