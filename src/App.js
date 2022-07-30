@@ -16,7 +16,11 @@ function App() {
 
   let favoriteQoute = ''
 
+  const quotes = async (e) => {
+    e.preventDefault();
 
+     dispatch(getKanyeQuotes());
+  }
   console.log(favoriteQoute);
   return (
     <div>
@@ -38,7 +42,7 @@ function App() {
           <b>{reduxState.QuoteReducer.kanyeQuotes}</b>
         </h3>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <button onClick={() => dispatch(getKanyeQuotes())}>Get Quote</button>
+          <button onClick={quotes}>Get Quote</button>
           <button
             onClick={() =>
               favoriteQoute != reduxState.QuoteReducer.kanyeQuotes &&
@@ -53,7 +57,7 @@ function App() {
       <div style={{ textAlign: "center" }}>
         <hr style={{ maxWidth: "30%", marginTop: 90 }}></hr>
         <h2>My Quotes</h2>
-        <form style={{ display: "flex", justifyContent: 'center' }}>
+        <form style={{ display: "flex", justifyContent: "center" }}>
           <input type="text"></input>
           <button>Submit</button>
         </form>
